@@ -27,5 +27,5 @@ dependencies:
   owner: nuxeo
   repo: jxlabs-nos-trigger-pipeline
   url: https://github.com/nuxeo/jxlabs-nos-trigger-pipeline
-  version: 0.0.33
-  versionURL: https://github.com/nuxeo/jxlabs-nos-trigger-pipeline/releases/tag/v0.0.33
+  version: 0.0.1
+  versionURL: https://github.com/nuxeo/jxlabs-nos-trigger-pipeline/releases/tag/v0.0.1
