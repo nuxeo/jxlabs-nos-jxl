@@ -1,24 +1,23 @@
 buildPack: go-cli
-dockerRegistryHost: gcr.io/build-jx-prod/jxlabs-nos-master
-dockerRegistryOwner: nuxeo
 pipelineConfig:
   pipelines:
     overrides:
-    - name: next-version
-      step:
-        sh: jx step next-version --git-tag-only
     - name: tag-version
       step:
-        sh: jx step tag --charts-value-repository=gcr.io/build-jx-prod/jxlabs-nos/jxl-boot --version=\$(cat VERSION)
+        sh: jx step tag --charts-value-repository=gcr.io/build-jx-prod/jxlabs-nos-master/jxl-boot --version=\$(cat VERSION)
     release:
       pipeline:
         stages:
           - agent:
-              image: gcr.io/jenkinsxio/builder-go
+               image: gcr.io/jenkinsxio/builder-go
             name: chart
             environment:
               - name: GOOGLE_APPLICATION_CREDENTIALS
                 value: /secrets/kaniko/kaniko-secret.json
+              - name: DOCKER_REGISTRY
+                value: gcr.io/build-jx-prod
+              - name: DOCKER_REGISTRY_ORG
+                value: jlabs-nos-master
             options:
               volumes:
                 - name: kaniko-secret
@@ -47,7 +46,7 @@ pipelineConfig:
                     cpu: 1
                     memory: 3072Mi
             steps:
-              - sh: /kaniko/executor --cache=true --cache-dir=/workspace --context=/workspace/source --dockerfile=/workspace/source/Dockerfile --destination=$DOCKER_REGISTRY/$DOCKER_REGISTRY_ORG/$APP_NAME:$VERSION 
+              - sh: /kaniko/executor --cache=true --cache-dir=/workspace --context=/workspace/source --dockerfile=/workspace/source/Dockerfile --destination=$DOCKER_REGISTRY/$DOCKER_REGISTRY_ORG/$APP_NAME:$VERSIO
                 name: container-build
                 image: gcr.io/kaniko-project/executor
 
@@ -61,15 +60,12 @@ pipelineConfig:
 
               - name: release-binary
                 command: make release
-                image: golang:1.12
 
               - name: changelog
                 command: jx step changelog --verbose --header-file=hack/changelog-header.md --version=$VERSION --rev=$PULL_BASE_SHA --output-markdown=changelog.md --update-release=false
-                image: gcr.io/jenkinsxio/jx
 
               - name: upload-binaries
                 command: make goreleaser
-                image: gcr.io/jenkinsxio-labs/go-releaser:0.0.18
 
               - command: ./promote.sh
                 dir: /workspace/source

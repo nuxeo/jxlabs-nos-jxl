@@ -1,6 +1,6 @@
 module github.com/jenkins-x-labs/jxl
 
-go 1.12
+go 1.13
 
 require (
 	github.com/blang/semver v3.5.1+incompatible
@@ -10,16 +10,23 @@ require (
 	github.com/jenkins-x-labs/step-go-releaser v0.0.18
 	github.com/jenkins-x-labs/trigger-pipeline v0.0.4
 	github.com/jenkins-x/helm-unit-tester v0.0.6
-	github.com/jenkins-x/jx v0.0.0-20200407063749-f19676961cb7
-	github.com/nxmatic/jxlabs-nos-yaml-patch v0.0.3
+	github.com/jenkins-x/jx/v2 v2.1.97
+	github.com/nuxeo/jxlabs-nos-yaml-patch v0.0.3
 	github.com/pkg/errors v0.9.1
 	github.com/spf13/cobra v1.0.0
 	github.com/stretchr/testify v1.4.0
 )
 
-replace code.gitea.io/sdk => github.com/go-gitea/go-sdk v0.0.0-20180702024448-79a281c4e34a
 
-replace github.com/jenkins-x/jx => github.com/nuxeo/jxlabs-nos-jx v1.3.981-0.20200509145424-6d90ddbd0bf0
+replace github.com/jenkins-x-labs/helmboot => github.com/nuxeo/jxlabs-nos-helmboot v0.0.3
+
+replace github.com/jenkins-x-labs/jwizard => github.com/nuxeo/jxlabs-nos-jwizard v0.0.8
+
+replace github.com/jenkins-x-labs/step-go-releaser => github.com/nuxeo/jxlabs-nos-step-go-releaser v0.0.1
+
+replace github.com/jenkins-x-labs/trigger-pipeline => github.com/nuxeo/jxlabs-nos-trigger-pipeline v0.0.9
+
+replace code.gitea.io/sdk => github.com/go-gitea/go-sdk v0.0.0-20180702024448-79a281c4e34a
 
 replace github.com/coreos/go-systemd => github.com/coreos/go-systemd/v22 v22.0.0
 
