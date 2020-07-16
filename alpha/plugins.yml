@@ -23,7 +23,7 @@
       goarch: amd64
       goos: windows
   name: tp
-  version: "0.0.1"
+  version: "0.0.9"
   subCommand: jenkins
   description: "commands for triggering pipelines in remote Jenkins servers"
 - binaries:
