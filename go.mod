@@ -17,7 +17,6 @@ require (
 	github.com/stretchr/testify v1.4.0
 )
 
-
 replace github.com/jenkins-x-labs/helmboot => github.com/nuxeo/jxlabs-nos-helmboot v0.0.3
 
 replace github.com/jenkins-x-labs/jwizard => github.com/nuxeo/jxlabs-nos-jwizard v0.0.8
