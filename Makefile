@@ -1,3 +1,10 @@
+__ORIGINAL_SHELL:=$(SHELL)
+SHELL=$(warning Building $@$(if $<, (from $<))$(if $?, ($? newer)))$(TIME) $(__ORIGINAL_SHELL) -x
+
+include make.d/version.mk
+
+SHELL=$(ti__ORIGINAL_SHELL)
+
 # Make does not offer a recursive wildcard function, so here's one:
 rwildcard=$(wildcard $1$2) $(foreach d,$(wildcard $1*),$(call rwildcard,$d/,$2))
 
@@ -15,7 +22,7 @@ ROOT_PACKAGE := github.com/$(ORG_REPO)
 GO_VERSION := $(shell $(GO) version | sed -e 's/^[^0-9.]*\([0-9.]*\).*/\1/')
 GO_DEPENDENCIES := $(call rwildcard,pkg/,*.go) $(call rwildcard,cmd/jx-labs/,*.go)
 
-BRANCH     := $(shell git rev-parse --abbrev-ref HEAD 2> /dev/null  || echo 'unknown')
+BRANCH     := $(version-branch)
 BUILD_DATE := $(shell date +%Y%m%d-%H:%M:%S)
 CGO_ENABLED = 0
 
@@ -24,7 +31,7 @@ REPORTS_DIR=$(BUILD_TARGET)/reports
 GOTEST := $(GO) test
 
 # set dev version unless VERSION is explicitly set via environment
-VERSION ?= $(shell echo "$$(git for-each-ref refs/tags/ --count=1 --sort=-version:refname --format='%(refname:short)' 2>/dev/null)-dev+$(REV)" | sed 's/^v//')
+VERSION ?= $(version)
 
 version:
 	@echo $(VERSION)
