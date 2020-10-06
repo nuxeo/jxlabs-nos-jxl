@@ -57,7 +57,7 @@ pipelineConfig:
           - command: make release
             name: release-binary
           - name: fetch-tags
-            sh: git fetch --tags
+            sh: git fetch --quiet --tags
           - command: make goreleaser
             name: upload-binaries
           - image: gcr.io/kaniko-project/executor
@@ -78,9 +78,16 @@ pipelineConfig:
       setVersion:
         replace: true
         steps:
-        - comment: so we can retrieve the version in later steps
-          name: next-version
-          sh: jx step next-version --use-git-tag-only
-        - name: tag-version
-          sh: jx step tag --charts-value-repository=$DOCKER_REGISTRY/$DOCKER_REGISTRY_HOST/jxl
-            --version=\$(cat VERSION)
+          - name: git-unshallow
+            sh: 'git fetch --quiet --unshallow'
+          - name: git-fetch-tags
+            sh: 'git fetch --quiet --tags'
+          - name: git-set-upstream
+            sh: git branch --set-upstream-to=origin/$BRANCH_NAME $BRANCH_NAME
+          - name: git-checkout-branch
+            sh: 'git checkout $BRANCH_NAME'
+          - name: create-version-file
+            sh: jx step next-version --version=\$(make version) 
+          - name: tag-version
+            sh: jx step tag --charts-value-repository=$DOCKER_REGISTRY/$DOCKER_REGISTRY_HOST/jxl
+              --version=\$(cat VERSION)
