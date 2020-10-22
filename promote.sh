@@ -5,7 +5,7 @@ echo "promoting the new version ${VERSION} to downstream repositories"
 exit 0 # do nothing for now
 
 jx step create pr regex \
-    --regex '\s+image: gcr.io/jxlabs-nos/jxl:(.*)' \
+    --regex '\s+image: gcr.io/build-jx-prod/jxlabs-nos-master/jxlabs-nos-jxl:(.*)' \
     --version ${VERSION} \
     --files "jenkins-x-*.yml" \
     --repo https://github.com/nuxeo/jxlabs-nos-versions.git
@@ -13,7 +13,7 @@ jx step create pr regex \
 jx step create pr regex \
     --regex 'version: (.*)' \
     --version ${VERSION} \
-    --files docker/gcr.io/jxlabs-nos/jxl.yml \
+    --files docker/gcr.io/build-jx-prod/jxlabs-nos-master/jxlabs-nos/jxl.yml \
     --files packages/jxl.yml \
     --files charts/jx-labs/jxl-boot.yml \
     --repo https://github.com/nuxeo/jxlabs-nos-versions.git
