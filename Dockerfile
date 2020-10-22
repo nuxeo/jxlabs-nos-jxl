@@ -1,5 +1,4 @@
-ENV JXL_BASE_IMAGE_VERSION v0.1.41-16-8ea3e8b7-master
-FROM gcr.io/build-jx-prod/jxlabs-nos-master/jxlabs-nos-jxl-base-image:${JXL_BASE_IMAGE_VERSION}
+FROM gcr.io/build-jx-prod/jxlabs-nos-master/jxlabs-nos-jxl-base-image:v0.1.41-16-8ea3e8b7-master
 EXPOSE 8080
 
 ENV JX_VERSION 2.1.51-2-d9832b17-master
