@@ -3,8 +3,8 @@
 # Declare variables to be passed into your templates.
 
 image:
-  repository: gcr.io/build-jx-prod/jxlabs-nos/jxl
-  tag: latest
+  repository: //jxl
+  tag: 0.0.181-7-44566e3b-master
   pullPolicy: IfNotPresent
 
 serviceAccount:
