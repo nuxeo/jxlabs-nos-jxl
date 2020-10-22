@@ -1,4 +1,4 @@
-include make.d/workspace.mk
+include make.d/version.mk
 
 # Make does not offer a recursive wildcard function, so here's one:
 rwildcard=$(wildcard $1$2) $(foreach d,$(wildcard $1*),$(call rwildcard,$d/,$2))
