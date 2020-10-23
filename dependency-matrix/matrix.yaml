@@ -33,5 +33,11 @@ dependencies:
   owner: nuxeo
   repo: jxlabs-nos-jxl-base-image
   url: https://github.com/nuxeo/jxlabs-nos-jxl-base-image
-  version: 0.1.41-16-a0dc5e65-master
+  version: 0.1.41-17-46ac93d9-master
+  versionURL: https://github.com/nuxeo/jxlabs-nos-jxl-base-image/releases/tag/v0.1.41-17-46ac93d9-master
+- host: github.com
+  owner: nuxeo
+  repo: jxlabs-nos-jx
+  url: https://github.com/nuxeo/jxlabs-nos-jx
+  version: ""
   versionURL: ""

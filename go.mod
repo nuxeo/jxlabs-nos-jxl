@@ -11,7 +11,7 @@ require (
 	github.com/jenkins-x/helm-unit-tester v0.0.6
 	github.com/jenkins-x/jx-api v0.0.13
 	github.com/jenkins-x/jx-logging v0.0.11
-	github.com/jenkins-x/jx/v2 v2.1.97
+	github.com/jenkins-x/jx/v2 v
 	github.com/nuxeo/jxlabs-nos-yaml-patch v0.0.5
 	github.com/pkg/errors v0.9.1
 	github.com/spf13/cobra v1.0.0
