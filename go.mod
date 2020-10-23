@@ -26,7 +26,7 @@ replace github.com/jenkins-x-labs/step-go-releaser => github.com/nuxeo/jxlabs-no
 
 replace github.com/jenkins-x-labs/trigger-pipeline => github.com/nuxeo/jxlabs-nos-trigger-pipeline v0.1.0-4-516670ee-master
 
-replace github.com/jenkins-x/jx/v2 => github.com/nuxeo/jxlabs-nos-jx/v2 v2.1.1
+replace github.com/jenkins-x/jx/v2 => github.com/nuxeo/jxlabs-nos-jx/v2 v2.1.151-2-d9832b17-master
 
 replace code.gitea.io/sdk => github.com/go-gitea/go-sdk v0.0.0-20180702024448-79a281c4e34a
 
