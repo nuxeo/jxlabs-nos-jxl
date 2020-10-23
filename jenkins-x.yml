@@ -14,7 +14,7 @@ pipelineConfig:
             sh: jx step next-version --version=\$(make version)
           - name: tag-version
             sh: jx step tag --version=\$(cat VERSION)
-              --charts-value-repository=$DOCKER_REGISTRY/$DOCKER_REGISTRY_HOST/jxl
+              --charts-value-repository=$DOCKER_REGISTRY/$DOCKER_REGISTRY_HOST/$APP_NAME
       pipeline:
         stages:
           - name: chart
@@ -77,7 +77,7 @@ pipelineConfig:
                 name: container-build
                 sh: /kaniko/executor --cache=true --cache-dir=/workspace
                   --context=/workspace/source --dockerfile=/workspace/source/Dockerfile
-                  --destination=$DOCKER_REGISTRY/$DOCKER_REGISTRY_ORG/jxl:$VERSION
+                  --destination=$DOCKER_REGISTRY/$DOCKER_REGISTRY_ORG/$APP_NAME:$VERSION
               - command: make release
                 dir: /workspace/source/charts/jxl-boot
                 env:
